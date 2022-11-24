@@ -17,18 +17,15 @@
         <nav class="flex h-9 items-center justify-between" aria-label="Global">
           <div class="flex items-center">
             <div class="flex lg:min-w-0 lg:flex-1" aria-label="Global">
-              <h1 class="font-extrabold text-gray-900 text-xl">
-                RESI
-                <span class="text-blue-600">COM</span>
-              </h1>
+              <img src="@/Assets/images/logo.svg" alt class="h-8" />
             </div>
             <div class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-center lg:gap-x-12 ml-10">
               <a v-for="item in navigation" :key="item.name" :href="item.href" class="font-semibold text-gray-900 hover:text-blue-600">{{ item.name }}</a>
             </div>
           </div>
           <div class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end space-x-3">
-            <a href="#" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Masuk</a>
-            <a href="#" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-blue-500">Daftar</a>
+            <inertia-link :href="route('login')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Masuk</inertia-link>
+            <inertia-link :href="route('register')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-blue-500">Daftar</inertia-link>
           </div>
           <div class="flex lg:hidden">
             <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" @click="mobileMenuOpen = true">
@@ -43,10 +40,9 @@
           <DialogPanel focus="true" class="fixed inset-0 z-10 overflow-y-auto bg-white px-6 py-6 lg:hidden">
             <div class="flex h-9 items-center justify-between">
               <div class="flex lg:min-w-0 lg:flex-1" aria-label="Global">
-                <h1 class="font-extrabold text-gray-900 text-xl">
-                  RESI
-                  <span class="text-blue-600">COM</span>
-                </h1>
+                <div class="flex lg:min-w-0 lg:flex-1" aria-label="Global">
+                  <img src="@/Assets/images/logo.svg" alt class="h-6" />
+                </div>
               </div>
               <div class="flex">
                 <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" @click="mobileMenuOpen = false">
@@ -63,8 +59,8 @@
                   <a v-for="item in navigation" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10">{{ item.name }}</a>
                 </div>
                 <div class="py-6 flex space-x-3">
-                  <a href="#" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Masuk</a>
-                  <a href="#" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-blue-500">Daftar</a>
+                  <inertia-link :href="route('login')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Masuk</inertia-link>
+                  <inertia-link :href="route('register')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-blue-500">Daftar</inertia-link>
                 </div>
               </div>
             </div>
@@ -154,7 +150,7 @@
             <div v-for="residence in residences" :key="residence.id">
               <div class="relative">
                 <div class="relative h-60 w-full overflow-hidden rounded-xl sm:rounded-2xl">
-                  <img :src="residence.image" alt="Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls." class="h-full w-full object-cover object-center" />
+                  <img :src="residence.id == 1 ? newCityMalangImg : residence.id == 2 ? cityViewImg : residence.id == 3 ? deVillaImg : residence.id == 4 ? tanjungBanjarArumIndahImg : grandHillImg" alt="Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls." class="h-full w-full object-cover object-center" />
                 </div>
                 <div class="relative mt-4">
                   <h3 class="text-base font-medium text-gray-900">Perumahan {{residence.residence_name}}</h3>
@@ -207,8 +203,9 @@
                 </div>
                 <div class="grid grid-cols-1 gap-2">
                   <RadioGroup v-model="formRating.ratings.aksesibilitas_jalan_utama" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke jalan utama yaitu kemudahan menuju jalan besar yang menjadi pangkal dari jalan yang lain.</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.aksesibilitas_jalan_utama.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -225,8 +222,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.aksesibilitas_sekolah" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Aksesibilitas ke Sekolah</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke sekolah yaitu kemudahan menuju bangunan atau lembaga untuk belajar dan mengajar serta tempat menerima dan memberi pelajaran (menurut tingkatannya)</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.aksesibilitas_sekolah.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -243,8 +241,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.aksesibilitas_rumah_sakit" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Aksesibilitas ke Rumah Sakit</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke rumah sakit yaitu kemudahan menuju tempat yang menyediakan dan memberikan pelayanan kesehatan yang meliputi berbagai masalah kesehatan.</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.aksesibilitas_rumah_sakit.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -261,8 +260,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.aksesibilitas_pusat_perbelanjaan" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Aksesibilitas ke Pusat Perbelanjaan</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke pusat perbelanjaan yaitu kemudahan menuju tempat terbuka dekat dengan gedung-gedung di kota yang memiliki tempat untuk berjalan dan berbelanja.</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.aksesibilitas_pusat_perbelanjaan.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -279,8 +279,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.lebar_jalan" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Lebar Jalan</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Lebar jalan dimaksud adalah lebar jalan tanpa menghitung bahu jalan.</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.lebar_jalan.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -297,8 +298,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.kelebihan_tanah" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Kelebihan Tanah</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Kelebihan tanah dimaksud adalah jumlah yang dibayarkan konsumen kepada developer terhadap kelebihan tanah tersebut.</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.kelebihan_tanah.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -315,8 +317,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.fasilitas_umum" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Fasilitas Umum</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Fasilitas umum dimaksud adalah fasilitas yang disediakan untuk kepentingan umum.</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.fasilitas_umum.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -333,8 +336,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.harga" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Harga</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Harga dimaksud adalah harga asli tanpa biaya pajak dan notaris.</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.harga.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -351,8 +355,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.jaringan_listrik" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Jaringan Listrik</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Jaringan listrik dimaksud adalah tersedianya jaringan listrik dan seberapa sering listrik padam</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.jaringan_listrik.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -369,8 +374,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.keamanan" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Keamanan</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Keamanan dimaksud adalah seberapa sering terjadi kehilangan barang.</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.keamanan.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -387,8 +393,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.kenyamanan" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Kenyamanan</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Kenyamanan dimaksud adalah seberapa berisik, sejuk dan bersih keadaan lingkungan perumahan.</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.kenyamanan.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -405,8 +412,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.luas_tanah" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Luas Tanah</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Luas tanah dimaksud adalah apakah luas tanah sesuai dengan harga yang diberikan.</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.luas_tanah.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -423,8 +431,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.tipe_rumah" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Tipe Rumah</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Tipe rumah dimaksud adalah tipe yang ada apakah sesuai dengan harga yang berikan.</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.tipe_rumah.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -441,8 +450,9 @@
                   </RadioGroup>
 
                   <RadioGroup v-model="formRating.ratings.bukan_daerah_banjir" class="mt-2 border p-4 rounded-xl">
-                    <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <div class="flex space-x-2 mt-2">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Bukan Daerah Banjir</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Bukan daerah banjir dimaksud adalah seberapa sering perumahan tersebut terkena bencana banjir.</p>
+                    <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
                               checked || option.value < formRating.ratings.bukan_daerah_banjir.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
@@ -459,9 +469,7 @@
                   </RadioGroup>
                 </div>
                 <div class="mt-6 flex justify-end">
-                  <button type="button" class="inline-flex items-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                    Dapatkan Rekomendasi
-                  </button>
+                  <button type="button" class="inline-flex items-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Dapatkan Rekomendasi</button>
                 </div>
               </DialogPanel>
             </TransitionChild>
@@ -484,6 +492,12 @@ import {
   RadioGroupLabel,
   RadioGroupOption,
 } from "@headlessui/vue";
+
+import newCityMalangImg from "@/Assets/images/new-city-malang.jpg";
+import cityViewImg from "@/Assets/images/city-view.jpg";
+import deVillaImg from "@/Assets/images/de-villa.jpg";
+import tanjungBanjarArumIndahImg from "@/Assets/images/tanjung-banjar-arum-indah.jpg";
+import grandHillImg from "@/Assets/images/grand-hill.jpg";
 
 const navigation = [
   { name: "Tentang", href: "#" },
@@ -577,6 +591,11 @@ export default {
       ratingConsts,
       rate,
       formRating,
+      newCityMalangImg,
+      cityViewImg,
+      deVillaImg,
+      tanjungBanjarArumIndahImg,
+      grandHillImg,
     };
   },
 };

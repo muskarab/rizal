@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('residences', function (Blueprint $table) {
             $table->id();
             $table->string('residence_name');
+            $table->string('image');
+            $table->string('location');
+            $table->text('description');
             $table->timestamps();
         });
     }

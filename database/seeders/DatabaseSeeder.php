@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(9)->create();
+        \App\Models\User::factory(3)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'test',
@@ -24,121 +24,89 @@ class DatabaseSeeder extends Seeder
 
         // Residence
         $residences = [
-            'Greenland', 
-            'Puri Nirwana Gajayana', 
-            'Graha Merjosari Asri', 
-            'Permata Jingga', 
-            'Villa Bukit Tidar', 
-            'Bukit Cemara Tidar', 
-            'Istana Gajayana', 
-            'Green Orchid', 
-            'Sigura Gura Green Park',
+            [
+                'residence_name' => 'New City Malang',
+                'image' => 'new-city-malang.jpg',
+                'location' => 'https://g.page/kawasan-new-city-malang?share',
+                'description' => 'Perumahan new city malang dikembangkan oleh PT. Giriburing Adiraya dan berlokasi di Jl. Raya Ki Ageng Gribig, Kecamatan Kedungkandang.',
+            ],
+            [
+                'residence_name' => 'City View',
+                'image' => 'city-view.jpg',
+                'location' => 'https://goo.gl/maps/7Q3SaTBMbBkVSVie6',
+                'description' => 'Perumahan city view dikembangkan oleh PT. Turen Indah Property dan berlokasi di  Jl. KH. Malik Dalam, Kecamatan Kedungkandang.',
+            ],
+            [
+                'residence_name' => 'De Villa',
+                'image' => 'de-villa.jpg',
+                'location' => 'https://goo.gl/maps/Yu8K1QKdiF4hgnJL9',
+                'description' => 'Perumahan de villa dikembangkan oleh PT. Turen Indah Property dan berlokasi di Jl. Raya Ampeldento, Dami, Kecamatan Pakis.',
+            ],
+            [
+                'residence_name' => 'Tanjung Banjar Arum Indah',
+                'image' => 'tanjung-banjar-arum-indah.jpg',
+                'location' => 'https://goo.gl/maps/KH3QKAvNXswf5h2b9',
+                'description' => 'Perumahan Tanjung Banjar Arum Indah dikembangkan oleh PT. Dwirantha Karya Nusantara dan berlokasi di Tanjung, Banjararum, Kec. Singosari.',
+            ],
+            [
+                'residence_name' => 'Grand Hill',
+                'image' => 'grand-hill.jpg',
+                'location' => 'https://goo.gl/maps/PSQmNYYJKgnFDthW6',
+                'description' => 'Perumahan grand hill dikembangkan oleh PT. Turen Indah Property dan berlokasi di Jl. Kalianyar Buring, Wonokoyo, Kec. Kedungkandang.',
+            ],
         ];
-        for ($i = 0; $i < count($residences); $i++) {
+        foreach ($residences as $residence) {
             \App\Models\Residence::create([
-                'residence_name' => $residences[$i],
+                'residence_name' => $residence['residence_name'],
+                'image' => $residence['image'],
+                'location' => $residence['location'],
+                'description' => $residence['description'],
             ]);
         }
 
-        $getResidences = \App\Models\Residence::get();
-        $data = [
-            [
-                'aksesibilitas' => str_split("354433553"),
-                'fasilitas_umum' => str_split("522543342"),
-                'keamanan' => str_split("533544443"),
-                'harga' => str_split("233122224"),
-                'lebar_jalan' => str_split("542554452"),
-                'overall' => str_split("433543442"),
-            ],
-            [
-                'aksesibilitas' => str_split("332432143"),
-                'fasilitas_umum' => str_split("423322134"),
-                'keamanan' => str_split("322323233"),
-                'harga' => str_split("231323223"),
-                'lebar_jalan' => str_split("222312334"),
-                'overall' => str_split("321322134"),
-            ],
-            [
-                'aksesibilitas' => str_split("254511541"),
-                'fasilitas_umum' => str_split("522533341"),
-                'keamanan' => str_split("522533442"),
-                'harga' => str_split("122122513"),
-                'lebar_jalan' => str_split("531543541"),
-                'overall' => str_split("532533441"),
-            ],
-            [
-                'aksesibilitas' => str_split("244423542"),
-                'fasilitas_umum' => str_split("443323433"),
-                'keamanan' => str_split("343323434"),
-                'harga' => str_split("253122214"),
-                'lebar_jalan' => str_split("243413331"),
-                'overall' => str_split("253322534"),
-            ],
-            [
-                'aksesibilitas' => str_split("254522452"),
-                'fasilitas_umum' => str_split("522543351"),
-                'keamanan' => str_split("523434242"),
-                'harga' => str_split("544544454"),
-                'lebar_jalan' => str_split("432433442"),
-                'overall' => str_split("434544453"),
-            ],
-            [
-                'aksesibilitas' => str_split("554512554"),
-                'fasilitas_umum' => str_split("533543342"),
-                'keamanan' => str_split("543555551"),
-                'harga' => str_split("322433341"),
-                'lebar_jalan' => str_split("543543243"),
-                'overall' => str_split("543443342"),
-            ],
-            [
-                'aksesibilitas' => str_split("233533434"),
-                'fasilitas_umum' => str_split("354442334"),
-                'keamanan' => str_split("433533444"),
-                'harga' => str_split("344434435"),
-                'lebar_jalan' => str_split("143431445"),
-                'overall' => str_split("323532435"),
-            ],
-            [
-                'aksesibilitas' => str_split("143421542"),
-                'fasilitas_umum' => str_split("432454521"),
-                'keamanan' => str_split("414544544"),
-                'harga' => str_split("433544453"),
-                'lebar_jalan' => str_split("531422441"),
-                'overall' => str_split("433543531"),
-            ],
-            [
-                'aksesibilitas' => str_split("334212523"),
-                'fasilitas_umum' => str_split("312243512"),
-                'keamanan' => str_split("433334333"),
-                'harga' => str_split("522235533"),
-                'lebar_jalan' => str_split("433134423"),
-                'overall' => str_split("123132215"),
-            ],
-            [
-                'aksesibilitas' => str_split("000012541"),
-                'fasilitas_umum' => str_split("000033242"),
-                'keamanan' => str_split("000024342"),
-                'harga' => str_split("000043325"),
-                'lebar_jalan' => str_split("000034351"),
-                'overall' => str_split("000024341"),
-            ],
-        ];
+        // $getResidences = \App\Models\Residence::get();
+        // $data = [
+        //     // [
+        //     //     'aksesibilitas_jalan_utama' => str_split("3210"),
+        //     //     'aksesibilitas_sekolah' => str_split("5530"),
+        //     //     'aksesibilitas_rumah_sakit' => str_split("3530"),
+        //     //     'aksesibilitas_pusat_perbelanjaan' => str_split("2220"),
+        //     //     'lebar_jalan' => str_split("5530"),
+        //     //     'kelebihan_tanah' => str_split("4530"),
+        //     //     'fasilitas_umum' => str_split("2350"),
+        //     //     'harga' => str_split("3540"),
+        //     //     'jaringan_listrik' => str_split("3320"),
+        //     //     'keamanan' => str_split("4540"),
+        //     //     'kenyamanan' => str_split("2350"),
+        //     //     'luast_tanah' => str_split("4240"),
+        //     //     'tipe_rumah' => str_split("3540"),
+        //     //     'bukan_daerah_banjir' => str_split("2440"),
+        //     //     'overall' => str_split("3250"),
+        //     // ],
+        //     [
+        //         '1' => str_split("353254233424323"),
+        //         '2' => str_split("523343353444425"),
+        //         '3' => str_split("423323354425424"),
+        //         '4' => str_split("455155132342242"),
+        //         '5' => str_split("344254223535324"),
+        //     ],
+        // ];
 
-        // Generate Data Uji
-        for ($j=0; $j <= 9; $j++) { 
-            foreach ($getResidences as $key => $residence) {
-                \App\Models\Rating::create([
-                    'user_id' => $j+1,
-                    'residence_id' => $residence->id,
-                    'aksesibilitas' => $data[$j]['aksesibilitas'][$key],
-                    'fasilitas_umum' => $data[$j]['fasilitas_umum'][$key],
-                    'keamanan' => $data[$j]['keamanan'][$key],
-                    'harga' => $data[$j]['harga'][$key],
-                    'lebar_jalan' => $data[$j]['lebar_jalan'][$key],
-                    'overall' => $data[$j]['overall'][$key],
-                ]);
+        // // Generate Data Uji
+        // for ($j=0; $j <= 9; $j++) { 
+        //     foreach ($getResidences as $key => $residence) {
+        //         \App\Models\Rating::create([
+        //             'user_id' => $j+1,
+        //             'residence_id' => $residence->id,
+        //             'aksesibilitas' => $data[$j]['aksesibilitas'][$key],
+        //             'fasilitas_umum' => $data[$j]['fasilitas_umum'][$key],
+        //             'keamanan' => $data[$j]['keamanan'][$key],
+        //             'harga' => $data[$j]['harga'][$key],
+        //             'lebar_jalan' => $data[$j]['lebar_jalan'][$key],
+        //             'overall' => $data[$j]['overall'][$key],
+        //         ]);
     
-            }
-        }
+        //     }
+        // }
     }
 }

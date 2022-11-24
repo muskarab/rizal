@@ -17,11 +17,20 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('residence_id');
-            $table->integer('aksesibilitas');
-            $table->integer('fasilitas_umum');
-            $table->integer('keamanan');
-            $table->integer('harga');
+            $table->integer('aksesibilitas_jalan_utama');
+            $table->integer('aksesibilitas_sekolah');
+            $table->integer('aksesibilitas_rumah_sakit');
+            $table->integer('aksesibilitas_pusat_perbelanjaan');
             $table->integer('lebar_jalan');
+            $table->integer('kelebihan_tanah');
+            $table->integer('fasilitas_umum');
+            $table->integer('harga');
+            $table->integer('jaringan_listrik');
+            $table->integer('keamanan');
+            $table->integer('kenyamanan');
+            $table->integer('luast_tanah');
+            $table->integer('tipe_rumah');
+            $table->integer('bukan_daerah_banjir');
             $table->integer('overall');
             $table->timestamps();
 
