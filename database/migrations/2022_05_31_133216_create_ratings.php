@@ -28,7 +28,7 @@ return new class extends Migration
             $table->integer('jaringan_listrik');
             $table->integer('keamanan');
             $table->integer('kenyamanan');
-            $table->integer('luast_tanah');
+            $table->integer('luas_tanah');
             $table->integer('tipe_rumah');
             $table->integer('bukan_daerah_banjir');
             $table->integer('overall');
