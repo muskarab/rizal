@@ -107,23 +107,22 @@
     <div class="isolate">
       <div class="mx-auto max-w-6xl py-5 px-4 sm:py-10 sm:px-6 lg:px-8">
         <div>
-          <h2 class="text-3xl font-bold text-gray-900">3 Rekomendasi Perumahan untuk kamu</h2>
+          <h2 class="text-3xl font-bold text-gray-900">Rekomendasi Perumahan untuk kamu</h2>
           <div v-if="sortDescrecommendations" class="mt-8 grid grid-cols-1 gap-y-10 sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 xl:gap-x-8">
             <div v-for="(recommendation, index) in sortDescrecommendations" :key="recommendation.id">
               <div v-if="index < 3">
                 <div class="relative">
                   <div class="relative h-60 w-full overflow-hidden rounded-xl sm:rounded-2xl">
-                    <img src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?cs=srgb&dl=pexels-binyamin-mellish-186077.jpg&fm=jpg" alt="Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls." class="h-full w-full object-cover object-center" />
+                    <img :src="recommendation.residence.id == 1 ? newCityMalangImg : recommendation.residence.id == 2 ? cityViewImg : recommendation.residence.id == 3 ? deVillaImg : recommendation.residence.id == 4 ? tanjungBanjarArumIndahImg : grandHillImg" alt="Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls." class="h-full w-full object-cover object-center" />
                   </div>
                   <div class="relative mt-4">
                     <h3 class="text-base font-medium text-gray-900">{{ recommendation.residence.residence_name }}</h3>
-                    <div class="mt-1 text-sm text-gray-500 flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                    <a :href="recommendation.residence.location" target="_blank" class="mt-1 text-sm text-blue-500 flex items-center hover:underline">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1">
+                        <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
                       </svg>
                       Lihat Lokasi
-                    </div>
+                    </a>
                   </div>
                   <div class="absolute inset-x-0 top-0 flex h-60 items-end justify-end overflow-hidden rounded-xl sm:rounded-2xl p-4">
                     <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"></div>
