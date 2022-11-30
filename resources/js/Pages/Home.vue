@@ -20,12 +20,12 @@
               <img src="@/Assets/images/logo.svg" alt class="h-8" />
             </div>
             <div class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-center lg:gap-x-12 ml-10">
-              <a v-for="item in navigation" :key="item.name" :href="item.href" class="font-semibold text-gray-900 hover:text-blue-600">{{ item.name }}</a>
+              <Link v-for="item in navigation" :key="item.name" :href="item.href" class="font-semibold text-gray-900 hover:text-blue-600">{{ item.name }}</Link>
             </div>
           </div>
           <div class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end space-x-3">
-            <inertia-link :href="route('login')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Masuk</inertia-link>
-            <inertia-link :href="route('register')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-blue-500">Daftar</inertia-link>
+            <Link :href="route('login')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Masuk</Link>
+            <Link :href="route('register')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-blue-500">Daftar</Link>
           </div>
           <div class="flex lg:hidden">
             <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" @click="mobileMenuOpen = true">
@@ -56,11 +56,11 @@
             <div class="mt-6 flow-root">
               <div class="-my-6 divide-y divide-gray-500/10">
                 <div class="space-y-2 py-6">
-                  <a v-for="item in navigation" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10">{{ item.name }}</a>
+                  <Link v-for="item in navigation" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10">{{ item.name }}</Link>
                 </div>
                 <div class="py-6 flex space-x-3">
-                  <inertia-link :href="route('login')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Masuk</inertia-link>
-                  <inertia-link :href="route('register')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-blue-500">Daftar</inertia-link>
+                  <Link :href="route('login')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Masuk</Link>
+                  <Link :href="route('register')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-blue-500">Daftar</Link>
                 </div>
               </div>
             </div>
@@ -106,6 +106,8 @@
   <main id="content">
     <div class="isolate">
       <div class="mx-auto max-w-6xl py-5 px-4 sm:py-10 sm:px-6 lg:px-8">
+        
+        <!-- hasil rekomendasi -->
         <div>
           <h2 class="text-3xl font-bold text-gray-900">Rekomendasi Perumahan untuk kamu</h2>
           <div v-if="sortDescrecommendations" class="mt-8 grid grid-cols-1 gap-y-10 sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 xl:gap-x-8">
@@ -116,7 +118,7 @@
                     <img :src="recommendation.residence.id == 1 ? newCityMalangImg : recommendation.residence.id == 2 ? cityViewImg : recommendation.residence.id == 3 ? deVillaImg : recommendation.residence.id == 4 ? tanjungBanjarArumIndahImg : grandHillImg" alt="Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls." class="h-full w-full object-cover object-center" />
                   </div>
                   <div class="relative mt-4">
-                    <h3 class="text-base font-medium text-gray-900">{{ recommendation.residence.residence_name }}</h3>
+                    <h3 class="text-base font-medium text-gray-900">Perumahan {{ recommendation.residence.residence_name }}</h3>
                     <a :href="recommendation.residence.location" target="_blank" class="mt-1 text-sm text-blue-500 flex items-center hover:underline">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1">
                         <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
@@ -126,20 +128,15 @@
                   </div>
                   <div class="absolute inset-x-0 top-0 flex h-60 items-end justify-end overflow-hidden rounded-xl sm:rounded-2xl p-4">
                     <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"></div>
-                    <div class="relative text-lg font-semibold text-white flex">
+                    <!-- <div class="relative text-lg font-semibold text-white flex">
                       <svg v-for="index in 5" :key="index" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
                       </svg>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="mt-4 flex space-x-2">
-                  <a href="#" class="relative shadow-lg flex items-center justify-center rounded-xl border border-transparent bg-yellow-400 py-3 px-3 text-sm font-medium text-white hover:bg-yellow-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                      <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
-                    </svg>
-                  </a>
-                  <a href="#" class="w-full relative shadow-lg flex items-center justify-center rounded-xl border border-transparent bg-blue-500 py-3 px-8 text-sm font-medium text-white hover:bg-blue-600">Lihat Detail</a>
+                  <Link :href="route('residence.show', recommendation.residence.id)" class="w-full relative shadow-lg flex items-center justify-center rounded-xl border border-transparent bg-blue-500 py-3 px-8 text-sm font-medium text-white hover:bg-blue-600">Lihat Detail</Link>
                 </div>
               </div>
             </div>
@@ -154,18 +151,13 @@
                 </div>
                 <div class="ml-3 flex-1 md:flex md:justify-between">
                   <p class="text-sm text-blue-700">Jika kamu ingin mendapatkan rekomendasi, silahkan login dan buat penilaian pada perumahan minimal 1 penilaian.</p>
-                  <p class="mt-3 text-sm md:mt-0 md:ml-6">
-                    <a href="#" class="whitespace-nowrap font-medium text-blue-700 hover:text-blue-600">
-                      Details
-                      <span aria-hidden="true">&rarr;</span>
-                    </a>
-                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- daftar perumahan -->
         <div class="mt-24">
           <h2 class="text-3xl font-bold text-gray-900">Daftar Perumahan</h2>
           <div class="mt-8 grid grid-cols-1 gap-y-10 sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 xl:gap-x-8">
@@ -185,11 +177,11 @@
                 </div>
                 <div class="absolute inset-x-0 top-0 flex h-60 items-end justify-end overflow-hidden rounded-xl sm:rounded-2xl p-4">
                   <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"></div>
-                  <div class="relative text-lg font-semibold text-white flex">
+                  <!-- <div class="relative text-lg font-semibold text-white flex">
                     <svg v-for="index in 5" :key="index" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
                     </svg>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="mt-4 w-full">
@@ -489,9 +481,61 @@
                       <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">({{ formRating.ratings.bukan_daerah_banjir.value }}) {{ formRating.ratings.bukan_daerah_banjir.isShow ? formRating.ratings.bukan_daerah_banjir.description : '' }}</span>
                     </div>
                   </RadioGroup>
+
+                  <RadioGroup v-model="formRating.ratings.overall" class="mt-2 border p-4 rounded-xl">
+                    <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Keseluruhan</span>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Nilai keseluruhan kamu dari semua kriteria diatas pada perumahan {{formRating.residence.residence_name}}.</p>
+                    <div class="flex space-x-2 mt-3">
+                      <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
+                        <div :class="[
+                              checked || option.value < formRating.ratings.overall.value ? 'bg-white text-yellow-400' : 'bg-white text-gray-300', 'flex items-center justify-center text-sm sm:text-base font-medium uppercase'
+                            ]">
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                              <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                            </svg>
+                          </div>
+                        </div>
+                      </RadioGroupOption>
+                      <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">({{ formRating.ratings.overall.value }}) {{ formRating.ratings.overall.isShow ? formRating.ratings.overall.description : '' }}</span>
+                    </div>
+                  </RadioGroup>
                 </div>
                 <div class="mt-6 flex justify-end">
-                  <button type="button" class="inline-flex items-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Dapatkan Rekomendasi</button>
+                  <button @click="submitRating" type="button" class="inline-flex items-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Dapatkan Rekomendasi</button>
+                </div>
+              </DialogPanel>
+            </TransitionChild>
+          </div>
+        </div>
+      </Dialog>
+    </TransitionRoot>
+
+    <!-- modal alert login -->
+    <TransitionRoot as="template" :show="openModalAlertLogin">
+      <Dialog as="div" class="relative z-10" @close="openModalAlertLogin = false">
+        <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
+          <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        </TransitionChild>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+          <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" enter-to="opacity-100 translate-y-0 sm:scale-100" leave="ease-in duration-200" leave-from="opacity-100 translate-y-0 sm:scale-100" leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+              <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                <div>
+                  <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-600">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 10-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 013.15 0v1.5m-3.15 0l.075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 013.15 0V15M6.9 7.575a1.575 1.575 0 10-3.15 0v8.175a6.75 6.75 0 006.75 6.75h2.018a5.25 5.25 0 003.712-1.538l1.732-1.732a5.25 5.25 0 001.538-3.712l.003-2.024a.668.668 0 01.198-.471 1.575 1.575 0 10-2.228-2.228 3.818 3.818 0 00-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0116.35 15m.002 0h-.002" />
+                    </svg>
+                  </div>
+                  <div class="mt-3 text-center sm:mt-5">
+                    <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">Mohon maaf kamu tidak bisa memberi penilaian karena belum login.</DialogTitle>
+                  </div>
+                </div>
+                <div class="mt-5 sm:mt-6">
+                  <Link :href="route('login')" class="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm">
+                    Login Sekarang
+                  </Link>
                 </div>
               </DialogPanel>
             </TransitionChild>
@@ -553,7 +597,7 @@
         </a>
       </div>
       <div class="mt-8 md:order-1 md:mt-0">
-        <p class="text-center text-base text-gray-400">&copy; 2022 Your Company, Inc. All rights reserved.</p>
+        <p class="text-center text-base text-gray-400">&copy; 2022 Muhammad Farid. All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -577,10 +621,12 @@ import cityViewImg from "@/Assets/images/city-view.jpg";
 import deVillaImg from "@/Assets/images/de-villa.jpg";
 import tanjungBanjarArumIndahImg from "@/Assets/images/tanjung-banjar-arum-indah.jpg";
 import grandHillImg from "@/Assets/images/grand-hill.jpg";
+import { Inertia } from '@inertiajs/inertia';
+import { Link, usePage } from '@inertiajs/inertia-vue3';
 
 const navigation = [
   { name: "Tentang", href: "#" },
-  { name: "Kontak", href: "#" },
+  { name: "Kontak", href: route('contact') },
 ];
 
 const ratingConsts = [
@@ -601,6 +647,7 @@ export default {
     RadioGroup,
     RadioGroupLabel,
     RadioGroupOption,
+    Link,
   },
   props: {
     recommendations: {
@@ -623,6 +670,7 @@ export default {
 
     const mobileMenuOpen = ref(false);
     const open = ref(false);
+    const openModalAlertLogin = ref(false);
 
     const defaultOption = {
       value: 0,
@@ -647,15 +695,20 @@ export default {
         luas_tanah: defaultOption,
         tipe_rumah: defaultOption,
         bukan_daerah_banjir: defaultOption,
+        overall: defaultOption,
       },
     });
 
     const handleOpenModalRating = (residence) => {
-      formRating.residence = residence;
-      open.value = true;
+      if (!usePage().props.value.auth.user) {
+        openModalAlertLogin.value = true;
+      } else {
+        formRating.residence = residence;
+        open.value = true;
+      }
     };
 
-    const handleCloseModalRating = () => {
+    const resetRating = () => {
       formRating.ratings.aksesibilitas_jalan_utama = defaultOption;
       formRating.ratings.aksesibilitas_sekolah = defaultOption;
       formRating.ratings.aksesibilitas_rumah_sakit = defaultOption;
@@ -670,8 +723,19 @@ export default {
       formRating.ratings.luas_tanah = defaultOption;
       formRating.ratings.tipe_rumah = defaultOption;
       formRating.ratings.bukan_daerah_banjir = defaultOption;
+      formRating.ratings.overall = defaultOption;
+    }
+
+    const handleCloseModalRating = () => {
+      resetRating();
       open.value = false;
     };
+
+    const submitRating = () => {
+      Inertia.post(route('rating.store'), formRating);
+      open.value = false;
+      resetRating();
+    }
 
     return {
       navigation,
@@ -688,6 +752,8 @@ export default {
       tanjungBanjarArumIndahImg,
       grandHillImg,
       sortDescrecommendations,
+      submitRating,
+      openModalAlertLogin,
     };
   },
 };

@@ -13,10 +13,12 @@ class HomeController extends Controller
     public function index()
     {
         $residences = Residence::get();
+        $recommendations = null;
 
         if (Auth::user()){
             $userId = Auth::user()->id;
-            if ($userId) {
+            $checkRatingUser = Rating::whereUserId(Auth::user()->id)->get();
+            if ($userId && count($checkRatingUser) != 0) {
                 $getUnRatings = Rating::whereUserId($userId)->with('residence')->get();
                 $getURatings = Rating::with('user')->where('user_id', '!=', $userId)->get()->groupBy('user_id');
         
@@ -537,14 +539,92 @@ class HomeController extends Controller
                 ]);
             } 
         }
-        else {
-            $recommendations = null;
-        }
 
         return Inertia::render('Home', [
             'residences' => $residences,
             'recommendations' => $recommendations,
         ]);
 
+    }
+
+    public function store(Request $request)
+    {
+        $checkRatingUser = Rating::whereUserId(Auth::user()->id)->whereResidenceId($request->residence['id'])->get();
+        if (count($checkRatingUser) == 0) {
+            for ($index=1; $index <= 5; $index++) { 
+                if($index == $request->residence['id']) {
+                    Rating::create([
+                        'user_id' => Auth::user()->id,
+                        'residence_id' => $index,
+                        'aksesibilitas_jalan_utama' => $request->ratings['aksesibilitas_jalan_utama']['value'],
+                        'aksesibilitas_sekolah' => $request->ratings['aksesibilitas_sekolah']['value'],
+                        'aksesibilitas_rumah_sakit' => $request->ratings['aksesibilitas_rumah_sakit']['value'],
+                        'aksesibilitas_pusat_perbelanjaan' => $request->ratings['aksesibilitas_pusat_perbelanjaan']['value'],
+                        'lebar_jalan' => $request->ratings['lebar_jalan']['value'],
+                        'kelebihan_tanah' => $request->ratings['kelebihan_tanah']['value'],
+                        'fasilitas_umum' => $request->ratings['fasilitas_umum']['value'],
+                        'harga' => $request->ratings['harga']['value'],
+                        'jaringan_listrik' => $request->ratings['jaringan_listrik']['value'],
+                        'keamanan' => $request->ratings['keamanan']['value'],
+                        'kenyamanan' => $request->ratings['kenyamanan']['value'],
+                        'luas_tanah' => $request->ratings['luas_tanah']['value'],
+                        'tipe_rumah' => $request->ratings['tipe_rumah']['value'],
+                        'bukan_daerah_banjir' => $request->ratings['bukan_daerah_banjir']['value'],
+                        'overall' => $request->ratings['overall']['value'],
+                    ]);       
+                } else {
+                    Rating::create([
+                        'user_id' => Auth::user()->id,
+                        'residence_id' => $index,
+                        'aksesibilitas_jalan_utama' => '0',
+                        'aksesibilitas_sekolah' => '0',
+                        'aksesibilitas_rumah_sakit' => '0',
+                        'aksesibilitas_pusat_perbelanjaan' => '0',
+                        'lebar_jalan' => '0',
+                        'kelebihan_tanah' => '0',
+                        'fasilitas_umum' => '0',
+                        'harga' => '0',
+                        'jaringan_listrik' => '0',
+                        'keamanan' => '0',
+                        'kenyamanan' => '0',
+                        'luas_tanah' => '0',
+                        'tipe_rumah' => '0',
+                        'bukan_daerah_banjir' => '0',
+                        'overall' => '0',
+                    ]);  
+                }
+            }
+        } else {
+            Rating::whereUserId(Auth::user()->id)->whereResidenceId($request->residence['id'])->update([
+                'user_id' => Auth::user()->id,
+                'residence_id' => $request->residence['id'],
+                'aksesibilitas_jalan_utama' => $request->ratings['aksesibilitas_jalan_utama']['value'],
+                'aksesibilitas_sekolah' => $request->ratings['aksesibilitas_sekolah']['value'],
+                'aksesibilitas_rumah_sakit' => $request->ratings['aksesibilitas_rumah_sakit']['value'],
+                'aksesibilitas_pusat_perbelanjaan' => $request->ratings['aksesibilitas_pusat_perbelanjaan']['value'],
+                'lebar_jalan' => $request->ratings['lebar_jalan']['value'],
+                'kelebihan_tanah' => $request->ratings['kelebihan_tanah']['value'],
+                'fasilitas_umum' => $request->ratings['fasilitas_umum']['value'],
+                'harga' => $request->ratings['harga']['value'],
+                'jaringan_listrik' => $request->ratings['jaringan_listrik']['value'],
+                'keamanan' => $request->ratings['keamanan']['value'],
+                'kenyamanan' => $request->ratings['kenyamanan']['value'],
+                'luas_tanah' => $request->ratings['luas_tanah']['value'],
+                'tipe_rumah' => $request->ratings['tipe_rumah']['value'],
+                'bukan_daerah_banjir' => $request->ratings['bukan_daerah_banjir']['value'],
+                'overall' => $request->ratings['overall']['value'],
+            ]);
+        }
+
+        return redirect()->route('index');
+    }
+
+    public function showResidence($id)
+    {
+        $residence = Residence::whereId($id)->get();
+
+        return Inertia::render('ShowResidence', [
+            'residence' => $residence[0],
+        ]);
     }
 }
