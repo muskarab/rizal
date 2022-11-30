@@ -15,54 +15,54 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(3)->create();
+        \App\Models\User::factory(50)->create();
 
-        \App\Models\User::factory()->create([
-            'name' => 'test',
-            'email' => 'test@example.com',
-        ]);
+        // \App\Models\User::factory()->create([
+        //     'name' => 'test',
+        //     'email' => 'test@example.com',
+        // ]);
 
         // Residence
-        $residences = [
-            [
-                'residence_name' => 'New City Malang',
-                'image' => 'new-city-malang.jpg',
-                'location' => 'https://g.page/kawasan-new-city-malang?share',
-                'description' => 'Perumahan new city malang dikembangkan oleh PT. Giriburing Adiraya dan berlokasi di Jl. Raya Ki Ageng Gribig, Kecamatan Kedungkandang.',
-            ],
-            [
-                'residence_name' => 'City View',
-                'image' => 'city-view.jpg',
-                'location' => 'https://goo.gl/maps/7Q3SaTBMbBkVSVie6',
-                'description' => 'Perumahan city view dikembangkan oleh PT. Turen Indah Property dan berlokasi di  Jl. KH. Malik Dalam, Kecamatan Kedungkandang.',
-            ],
-            [
-                'residence_name' => 'De Villa',
-                'image' => 'de-villa.jpg',
-                'location' => 'https://goo.gl/maps/Yu8K1QKdiF4hgnJL9',
-                'description' => 'Perumahan de villa dikembangkan oleh PT. Turen Indah Property dan berlokasi di Jl. Raya Ampeldento, Dami, Kecamatan Pakis.',
-            ],
-            [
-                'residence_name' => 'Tanjung Banjar Arum Indah',
-                'image' => 'tanjung-banjar-arum-indah.jpg',
-                'location' => 'https://goo.gl/maps/KH3QKAvNXswf5h2b9',
-                'description' => 'Perumahan Tanjung Banjar Arum Indah dikembangkan oleh PT. Dwirantha Karya Nusantara dan berlokasi di Tanjung, Banjararum, Kec. Singosari.',
-            ],
-            [
-                'residence_name' => 'Grand Hill',
-                'image' => 'grand-hill.jpg',
-                'location' => 'https://goo.gl/maps/PSQmNYYJKgnFDthW6',
-                'description' => 'Perumahan grand hill dikembangkan oleh PT. Turen Indah Property dan berlokasi di Jl. Kalianyar Buring, Wonokoyo, Kec. Kedungkandang.',
-            ],
-        ];
-        foreach ($residences as $residence) {
-            \App\Models\Residence::create([
-                'residence_name' => $residence['residence_name'],
-                'image' => $residence['image'],
-                'location' => $residence['location'],
-                'description' => $residence['description'],
-            ]);
-        }
+        // $residences = [
+        //     [
+        //         'residence_name' => 'New City Malang',
+        //         'image' => 'new-city-malang.jpg',
+        //         'location' => 'https://g.page/kawasan-new-city-malang?share',
+        //         'description' => 'Perumahan new city malang dikembangkan oleh PT. Giriburing Adiraya dan berlokasi di Jl. Raya Ki Ageng Gribig, Kecamatan Kedungkandang.',
+        //     ],
+        //     [
+        //         'residence_name' => 'City View',
+        //         'image' => 'city-view.jpg',
+        //         'location' => 'https://goo.gl/maps/7Q3SaTBMbBkVSVie6',
+        //         'description' => 'Perumahan city view dikembangkan oleh PT. Turen Indah Property dan berlokasi di  Jl. KH. Malik Dalam, Kecamatan Kedungkandang.',
+        //     ],
+        //     [
+        //         'residence_name' => 'De Villa',
+        //         'image' => 'de-villa.jpg',
+        //         'location' => 'https://goo.gl/maps/Yu8K1QKdiF4hgnJL9',
+        //         'description' => 'Perumahan de villa dikembangkan oleh PT. Turen Indah Property dan berlokasi di Jl. Raya Ampeldento, Dami, Kecamatan Pakis.',
+        //     ],
+        //     [
+        //         'residence_name' => 'Tanjung Banjar Arum Indah',
+        //         'image' => 'tanjung-banjar-arum-indah.jpg',
+        //         'location' => 'https://goo.gl/maps/KH3QKAvNXswf5h2b9',
+        //         'description' => 'Perumahan Tanjung Banjar Arum Indah dikembangkan oleh PT. Dwirantha Karya Nusantara dan berlokasi di Tanjung, Banjararum, Kec. Singosari.',
+        //     ],
+        //     [
+        //         'residence_name' => 'Grand Hill',
+        //         'image' => 'grand-hill.jpg',
+        //         'location' => 'https://goo.gl/maps/PSQmNYYJKgnFDthW6',
+        //         'description' => 'Perumahan grand hill dikembangkan oleh PT. Turen Indah Property dan berlokasi di Jl. Kalianyar Buring, Wonokoyo, Kec. Kedungkandang.',
+        //     ],
+        // ];
+        // foreach ($residences as $residence) {
+        //     \App\Models\Residence::create([
+        //         'residence_name' => $residence['residence_name'],
+        //         'image' => $residence['image'],
+        //         'location' => $residence['location'],
+        //         'description' => $residence['description'],
+        //     ]);
+        // }
 
         // $getResidences = \App\Models\Residence::get();
         // $data = [

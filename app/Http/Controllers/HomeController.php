@@ -285,63 +285,123 @@ class HomeController extends Controller
                         
                     }
                     // similarity aksesibilitas_jalan_utama
-                    $similarityAksesibilitasJalanUmum = $sigmaAksesibilitasJalanUmum/((sqrt($sigmaAksesibilitasJalanUmumUn))*(sqrt($sigmaAksesibilitasJalanUmumU)));
+                    try {
+                        $similarityAksesibilitasJalanUmum = $sigmaAksesibilitasJalanUmum/((sqrt($sigmaAksesibilitasJalanUmumUn))*(sqrt($sigmaAksesibilitasJalanUmumU)));
+                    } catch (\Throwable $th) {
+                        $similarityAksesibilitasJalanUmum = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityAksesibilitasJalanUmum . '<br>';
                     
                     // similarity aksesibilitas_sekolah
-                    $similarityAksesibilitasSekolah = $sigmaAksesibilitasSekolah/((sqrt($sigmaAksesibilitasSekolahUn))*(sqrt($sigmaAksesibilitasSekolahU)));
+                    try {
+                        $similarityAksesibilitasSekolah = $sigmaAksesibilitasSekolah/((sqrt($sigmaAksesibilitasSekolahUn))*(sqrt($sigmaAksesibilitasSekolahU)));
+                    } catch (\Throwable $th) {
+                        $similarityAksesibilitasSekolah = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityAksesibilitasSekolah . '<br>';
         
                     // similarity aksesibilitas_rumah_sakit
-                    $similarityAksesibilitasRumahSakit = $sigmaAksesibilitasRumahSakit/((sqrt($sigmaAksesibilitasRumahSakitUn))*(sqrt($sigmaAksesibilitasRumahSakitU)));
+                    try {
+                        $similarityAksesibilitasRumahSakit = $sigmaAksesibilitasRumahSakit/((sqrt($sigmaAksesibilitasRumahSakitUn))*(sqrt($sigmaAksesibilitasRumahSakitU)));
+                    } catch (\Throwable $th) {
+                        $similarityAksesibilitasRumahSakit = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityAksesibilitasRumahSakit . '<br>';
         
                     // similarity aksesibilitas_pusat_perbelanjaan
-                    $similarityAksesibilitasPusatPerbelanjaan = $sigmaAksesibilitasPusatPerbelanjaan/((sqrt($sigmaAksesibilitasPusatPerbelanjaanUn))*(sqrt($sigmaAksesibilitasPusatPerbelanjaanU)));
+                    try {
+                        $similarityAksesibilitasPusatPerbelanjaan = $sigmaAksesibilitasPusatPerbelanjaan/((sqrt($sigmaAksesibilitasPusatPerbelanjaanUn))*(sqrt($sigmaAksesibilitasPusatPerbelanjaanU)));
+                    } catch (\Throwable $th) {
+                        $similarityAksesibilitasPusatPerbelanjaan = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityAksesibilitasPusatPerbelanjaan . '<br>';
         
                     // similarity lebar_jalan
-                    $similarityLebarJalan = $sigmaLebarJalan/((sqrt($sigmaLebarJalanUn))*(sqrt($sigmaLebarJalanU)));
+                    try {
+                        $similarityLebarJalan = $sigmaLebarJalan/((sqrt($sigmaLebarJalanUn))*(sqrt($sigmaLebarJalanU)));
+                    } catch (\Throwable $th) {
+                        $similarityLebarJalan = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityLebarJalan . '<br>';
         
                     // similarity kelebihan_tanah
-                    $similarityKelebihanTanah = $sigmaKelebihanTanah/((sqrt($sigmaKelebihanTanahUn))*(sqrt($sigmaKelebihanTanahU)));
+                    try {
+                        $similarityKelebihanTanah = $sigmaKelebihanTanah/((sqrt($sigmaKelebihanTanahUn))*(sqrt($sigmaKelebihanTanahU)));
+                    } catch (\Throwable $th) {
+                        $similarityKelebihanTanah = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityKelebihanTanah . '<br>';
         
                     // similarity fasilitas_umum
-                    $similarityFasilitasUmum = $sigmaFasilitasUmum/((sqrt($sigmaFasilitasUmumUn))*(sqrt($sigmaFasilitasUmumU)));
+                    try {
+                        $similarityFasilitasUmum = $sigmaFasilitasUmum/((sqrt($sigmaFasilitasUmumUn))*(sqrt($sigmaFasilitasUmumU)));
+                    } catch (\Throwable $th) {
+                        $similarityFasilitasUmum = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityFasilitasUmum . '<br>';
         
                     // similarity harga
-                    $similarityHarga = $sigmaHarga/((sqrt($sigmaHargaUn))*(sqrt($sigmaHargaU)));
+                    try {
+                        $similarityHarga = $sigmaHarga/((sqrt($sigmaHargaUn))*(sqrt($sigmaHargaU)));
+                    } catch (\Throwable $th) {
+                        $similarityHarga = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityHarga . '<br>';
         
                     // similarity jaringan_listrik
-                    $similarityJaringanListrik = $sigmaJaringanListrik/((sqrt($sigmaJaringanListrikUn))*(sqrt($sigmaJaringanListrikU)));
+                    try {
+                        $similarityJaringanListrik = $sigmaJaringanListrik/((sqrt($sigmaJaringanListrikUn))*(sqrt($sigmaJaringanListrikU)));
+                    } catch (\Throwable $th) {
+                        $similarityJaringanListrik = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityJaringanListrik . '<br>';
         
                     // similarity keamanan
-                    $similarityKeamanan = $sigmaKeamanan/((sqrt($sigmaKeamananUn))*(sqrt($sigmaKeamananU)));
+                    try {
+                        $similarityKeamanan = $sigmaKeamanan/((sqrt($sigmaKeamananUn))*(sqrt($sigmaKeamananU)));
+                    } catch (\Throwable $th) {
+                        $similarityKeamanan = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityKeamanan . '<br>';
         
                     // similarity kenyamanan
-                    $similarityKenyamanan = $sigmaKenyamanan/((sqrt($sigmaKenyamananUn))*(sqrt($sigmaKenyamananU)));
+                    try {
+                        $similarityKenyamanan = $sigmaKenyamanan/((sqrt($sigmaKenyamananUn))*(sqrt($sigmaKenyamananU)));
+                    } catch (\Throwable $th) {
+                        $similarityKenyamanan = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityKenyamanan . '<br>';
         
                     // similarity luas_tanah
-                    $similarityLuasTanah = $sigmaLuasTanah/((sqrt($sigmaLuasTanahUn))*(sqrt($sigmaLuasTanahU)));
+                    try {
+                        $similarityLuasTanah = $sigmaLuasTanah/((sqrt($sigmaLuasTanahUn))*(sqrt($sigmaLuasTanahU)));
+                    } catch (\Throwable $th) {
+                        $similarityLuasTana = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityLuasTanah . '<br>';
         
                     // similarity tipe_rumah
-                    $similarityTipeRumah = $sigmaTipeRumah/((sqrt($sigmaTipeRumahUn))*(sqrt($sigmaTipeRumahU)));
+                    try {
+                        $similarityTipeRumah = $sigmaTipeRumah/((sqrt($sigmaTipeRumahUn))*(sqrt($sigmaTipeRumahU)));
+                    } catch (\Throwable $th) {
+                        $similarityTipeRumah = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityTipeRumah . '<br>';
         
                     // similarity bukan_daerah_banjir
-                    $similarityBukanDaerahBanjir = $sigmaBukanDaerahBanjir/((sqrt($sigmaBukanDaerahBanjirUn))*(sqrt($sigmaBukanDaerahBanjirU)));
+                    try {
+                        $similarityBukanDaerahBanjir = $sigmaBukanDaerahBanjir/((sqrt($sigmaBukanDaerahBanjirUn))*(sqrt($sigmaBukanDaerahBanjirU)));
+                    } catch (\Throwable $th) {
+                        $similarityBukanDaerahBanjir = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityBukanDaerahBanjir . '<br>';
         
                     // similarity overall
-                    $similarityOverall = $sigmaOverall/((sqrt($sigmaOverallUn))*(sqrt($sigmaOverallU)));
+                    try {
+                        $similarityOverall = $sigmaOverall/((sqrt($sigmaOverallUn))*(sqrt($sigmaOverallU)));
+                    } catch (\Throwable $th) {
+                        $similarityOverall = 0;
+                    }
                     // echo 'ID ' . $getURating[0]['user_id'] .' = '. $similarityOverall . '<br>';
         
                     $total = $similarityAksesibilitasJalanUmum + 
