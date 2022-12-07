@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,6 +26,7 @@ use Inertia\Inertia;
 //     ]);
 // });
 
+// user
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::post('/rating', [HomeController::class, 'store'])->name('rating.store');
 Route::get('/detail-perumahan/{id}', [HomeController::class, 'showResidence'])->name('residence.show');
@@ -32,8 +34,11 @@ Route::get('/kontak/hubungi-saya', function () {
     return Inertia::render('Contact');
 })->name('contact');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// admin
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::post('/verif', [DashboardController::class, 'verif'])->name('verif');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';

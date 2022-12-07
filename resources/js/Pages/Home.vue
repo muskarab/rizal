@@ -23,7 +23,28 @@
               <Link v-for="item in navigation" :key="item.name" :href="item.href" class="font-semibold text-gray-900 hover:text-blue-600">{{ item.name }}</Link>
             </div>
           </div>
-          <div class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end space-x-3">
+          <div class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end space-x-3" v-if="$page.props.auth.user">
+            <Dropdown align="right" width="48">
+              <template #trigger>
+                  <span class="inline-flex rounded-md">
+                      <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                          {{ $page.props.auth.user.name }}
+
+                          <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                          </svg>
+                      </button>
+                  </span>
+              </template>
+
+              <template #content>
+                  <DropdownLink :href="route('logout')" method="post" as="button">
+                      Log Out
+                  </DropdownLink>
+              </template>
+            </Dropdown>
+          </div>
+          <div class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end space-x-3" v-else>
             <Link :href="route('login')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Masuk</Link>
             <Link :href="route('register')" class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-blue-500">Daftar</Link>
           </div>
@@ -427,7 +448,7 @@
 
                   <RadioGroup v-model="formRating.ratings.luas_tanah" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Luas Tanah</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Luas tanah dimaksud adalah apakah luas tanah sesuai dengan harga yang diberikan.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Luas tanah dimaksud adalah seberapa sesuai luas tanah dengan harga yang diberikan.</p>
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -446,7 +467,7 @@
 
                   <RadioGroup v-model="formRating.ratings.tipe_rumah" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Tipe Rumah</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Tipe rumah dimaksud adalah tipe yang ada apakah sesuai dengan harga yang berikan.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Tipe rumah dimaksud adalah seberapa sesuai tipe yang ada dengan harga yang berikan.</p>
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -482,7 +503,7 @@
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup v-model="formRating.ratings.overall" class="mt-2 border p-4 rounded-xl">
+                  <!-- <RadioGroup v-model="formRating.ratings.overall" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Keseluruhan</span>
                     <p class="text-xs sm:text-sm leading-6 text-gray-500">Nilai keseluruhan kamu dari semua kriteria diatas pada perumahan {{formRating.residence.residence_name}}.</p>
                     <div class="flex space-x-2 mt-3">
@@ -499,7 +520,7 @@
                       </RadioGroupOption>
                       <span class="text-sm sm:text-base font-medium leading-6 text-gray-900">({{ formRating.ratings.overall.value }}) {{ formRating.ratings.overall.isShow ? formRating.ratings.overall.description : '' }}</span>
                     </div>
-                  </RadioGroup>
+                  </RadioGroup> -->
                 </div>
                 <div class="mt-6 flex justify-end">
                   <button @click="submitRating" type="button" class="inline-flex items-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Dapatkan Rekomendasi</button>
@@ -543,6 +564,35 @@
         </div>
       </Dialog>
     </TransitionRoot>
+
+    <!-- modal alert verif -->
+    <TransitionRoot as="template" :show="openModalAlertVerif">
+      <Dialog as="div" class="relative z-10" @close="openModalAlertVerif = false">
+        <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
+          <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        </TransitionChild>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+          <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" enter-to="opacity-100 translate-y-0 sm:scale-100" leave="ease-in duration-200" leave-from="opacity-100 translate-y-0 sm:scale-100" leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+              <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                <div>
+                  <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-600">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 10-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 013.15 0v1.5m-3.15 0l.075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 013.15 0V15M6.9 7.575a1.575 1.575 0 10-3.15 0v8.175a6.75 6.75 0 006.75 6.75h2.018a5.25 5.25 0 003.712-1.538l1.732-1.732a5.25 5.25 0 001.538-3.712l.003-2.024a.668.668 0 01.198-.471 1.575 1.575 0 10-2.228-2.228 3.818 3.818 0 00-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0116.35 15m.002 0h-.002" />
+                    </svg>
+                  </div>
+                  <div class="mt-3 text-center sm:mt-5">
+                    <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">Mohon maaf akun kamu belum terverifikasi oleh admin, silahkan tunggu beberapa menit!.</DialogTitle>
+                  </div>
+                </div>
+              </DialogPanel>
+            </TransitionChild>
+          </div>
+        </div>
+      </Dialog>
+    </TransitionRoot>
+
   </main>
 
   <!-- footer -->
@@ -623,6 +673,8 @@ import tanjungBanjarArumIndahImg from "@/Assets/images/tanjung-banjar-arum-indah
 import grandHillImg from "@/Assets/images/grand-hill.jpg";
 import { Inertia } from '@inertiajs/inertia';
 import { Link, usePage } from '@inertiajs/inertia-vue3';
+import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 
 const navigation = [
   { name: "Tentang", href: "#" },
@@ -648,6 +700,8 @@ export default {
     RadioGroupLabel,
     RadioGroupOption,
     Link,
+    Dropdown,
+    DropdownLink,
   },
   props: {
     recommendations: {
@@ -671,6 +725,7 @@ export default {
     const mobileMenuOpen = ref(false);
     const open = ref(false);
     const openModalAlertLogin = ref(false);
+    const openModalAlertVerif = ref(false);
 
     const defaultOption = {
       value: 0,
@@ -703,8 +758,12 @@ export default {
       if (!usePage().props.value.auth.user) {
         openModalAlertLogin.value = true;
       } else {
-        formRating.residence = residence;
-        open.value = true;
+        if (!usePage().props.value.auth.user.email_verified_at) {
+          openModalAlertVerif.value = true;
+        } else {
+          formRating.residence = residence;
+          open.value = true;
+        }
       }
     };
 
@@ -732,6 +791,22 @@ export default {
     };
 
     const submitRating = () => {
+      let sumCriteria = parseInt(formRating.ratings.aksesibilitas_jalan_utama.value) +
+        parseInt(formRating.ratings.aksesibilitas_sekolah.value) +
+        parseInt(formRating.ratings.aksesibilitas_rumah_sakit.value) +
+        parseInt(formRating.ratings.aksesibilitas_pusat_perbelanjaan.value) +
+        parseInt(formRating.ratings.lebar_jalan.value) +
+        parseInt(formRating.ratings.kelebihan_tanah.value) +
+        parseInt(formRating.ratings.fasilitas_umum.value) +
+        parseInt(formRating.ratings.harga.value) +
+        parseInt(formRating.ratings.jaringan_listrik.value) +
+        parseInt(formRating.ratings.keamanan.value) +
+        parseInt(formRating.ratings.kenyamanan.value) +
+        parseInt(formRating.ratings.luas_tanah.value) +
+        parseInt(formRating.ratings.tipe_rumah.value) +
+        parseInt(formRating.ratings.bukan_daerah_banjir.value);
+      formRating.ratings.overall.value = sumCriteria/14;
+
       Inertia.post(route('rating.store'), formRating);
       open.value = false;
       resetRating();
@@ -754,6 +829,7 @@ export default {
       sortDescrecommendations,
       submitRating,
       openModalAlertLogin,
+      openModalAlertVerif,
     };
   },
 };

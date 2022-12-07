@@ -16,9 +16,9 @@ class UserProfile extends Model
      */
     protected $fillable = [
         'user_id',
-        'monthly_salary',
-        'dependents',
-        'criteria_priority',
+        'no_telp',
+        'tanggal_lahir',
+        'alamat',
     ];
 
     public function user()

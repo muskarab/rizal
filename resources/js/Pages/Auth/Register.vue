@@ -8,6 +8,9 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 const form = useForm({
     name: '',
+    no_telp: '',
+    tanggal_lahir: '',
+    alamat: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -31,10 +34,17 @@ const submit = () => {
         </div>
 
         <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="name" value="Name" />
-                <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
-                <InputError class="mt-2" :message="form.errors.name" />
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <InputLabel for="name" value="Nama" />
+                    <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
+                    <InputError class="mt-2" :message="form.errors.name" />
+                </div>
+                <div>
+                    <InputLabel for="nomor" value="Nomor Telepon" />
+                    <TextInput id="nomor" type="text" class="mt-1 block w-full" v-model="form.no_telp" required autofocus autocomplete="name" />
+                    <InputError class="mt-2" :message="form.errors.no_telp" />
+                </div>
             </div>
 
             <div class="mt-4">
@@ -44,15 +54,29 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
-                <InputError class="mt-2" :message="form.errors.password" />
+                <InputLabel for="tl" value="Tanggal Lahir" />
+                <TextInput id="tl" type="date" class="mt-1 block w-full" v-model="form.tanggal_lahir" required autofocus autocomplete="name" />
+                <InputError class="mt-2" :message="form.errors.tanggal_lahir" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
-                <TextInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
-                <InputError class="mt-2" :message="form.errors.password_confirmation" />
+                <InputLabel for="alamat" value="Alamat" />
+                <TextInput id="alamat" type="text" class="mt-1 block w-full" v-model="form.alamat" required autofocus autocomplete="name" />
+                <InputError class="mt-2" :message="form.errors.alamat" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="mt-4">
+                    <InputLabel for="password" value="Password" />
+                    <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
+                    <InputError class="mt-2" :message="form.errors.password" />
+                </div>
+
+                <div class="mt-4">
+                    <InputLabel for="password_confirmation" value="Confirm Password" />
+                    <TextInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
+                    <InputError class="mt-2" :message="form.errors.password_confirmation" />
+                </div>
             </div>
 
             <div class="flex items-center justify-end mt-4">

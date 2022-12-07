@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->integer('monthly_salary');
-            $table->integer('dependents');
-            $table->string('criteria_priority');
+            $table->integer('no_telp');
+            $table->integer('tanggal_lahir');
+            $table->string('alamat');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users');
