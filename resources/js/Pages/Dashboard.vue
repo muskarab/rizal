@@ -46,9 +46,10 @@
                                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{user.user_profile?.tanggal_lahir}}</td>
                                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{user.user_profile?.alamat}}</td>
                                                     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                        <button @click="verifAccount(user.id)" type="button" class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                                        <button v-if="!user.email_verified_at" @click="verifAccount(user.id)" type="button" class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                                                             Verifikasi Akun
                                                         </button>
+                                                        <span>-</span>
                                                     </td>
                                                 </tr>
                                             </tbody>

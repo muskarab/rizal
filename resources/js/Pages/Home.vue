@@ -239,7 +239,8 @@
                 <div class="grid grid-cols-1 gap-2">
                   <RadioGroup v-model="formRating.ratings.aksesibilitas_jalan_utama" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Aksesibilitas ke Jalan Utama</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke jalan utama yaitu kemudahan menuju jalan besar yang menjadi pangkal dari jalan yang lain.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke jalan utama yaitu bagaimana jarak dan kemudahan untuk menuju jalan utama.</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke jalan utama yaitu kemudahan menuju jalan besar yang menjadi pangkal dari jalan yang lain.</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -258,7 +259,8 @@
 
                   <RadioGroup v-model="formRating.ratings.aksesibilitas_sekolah" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Aksesibilitas ke Sekolah</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke sekolah yaitu kemudahan menuju bangunan atau lembaga untuk belajar dan mengajar serta tempat menerima dan memberi pelajaran (menurut tingkatannya)</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke sekolah yaitu bagaimana jarak dan kemudahan untuk menuju sekolah</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke sekolah yaitu kemudahan menuju bangunan atau lembaga untuk belajar dan mengajar serta tempat menerima dan memberi pelajaran (menurut tingkatannya)</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -277,7 +279,8 @@
 
                   <RadioGroup v-model="formRating.ratings.aksesibilitas_rumah_sakit" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Aksesibilitas ke Rumah Sakit</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke rumah sakit yaitu kemudahan menuju tempat yang menyediakan dan memberikan pelayanan kesehatan yang meliputi berbagai masalah kesehatan.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke rumah sakit yaitu bagaimana jarak dan kemudahan untuk menuju rumah sakit.</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke rumah sakit yaitu kemudahan menuju tempat yang menyediakan dan memberikan pelayanan kesehatan yang meliputi berbagai masalah kesehatan.</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -296,7 +299,8 @@
 
                   <RadioGroup v-model="formRating.ratings.aksesibilitas_pusat_perbelanjaan" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Aksesibilitas ke Pusat Perbelanjaan</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke pusat perbelanjaan yaitu kemudahan menuju tempat terbuka dekat dengan gedung-gedung di kota yang memiliki tempat untuk berjalan dan berbelanja.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke pusat perbelanjaan yaitu bagaimana jarak dan kemudahan untuk menuju pusat perbelanjaan.</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Aksesibilitas ke pusat perbelanjaan yaitu kemudahan menuju tempat terbuka dekat dengan gedung-gedung di kota yang memiliki tempat untuk berjalan dan berbelanja.</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -315,7 +319,8 @@
 
                   <RadioGroup v-model="formRating.ratings.lebar_jalan" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Lebar Jalan</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Lebar jalan dimaksud adalah lebar jalan tanpa menghitung bahu jalan.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Lebar jalan dimaksud adalah bagaimana keluasan jalan pada perumahan .</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Lebar jalan dimaksud adalah lebar jalan tanpa menghitung bahu jalan.</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -334,7 +339,8 @@
 
                   <RadioGroup v-model="formRating.ratings.kelebihan_tanah" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Kelebihan Tanah</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Kelebihan tanah dimaksud adalah jumlah yang dibayarkan konsumen kepada developer terhadap kelebihan tanah tersebut.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Kelebihan tanah dimaksud adalah bagaimana keluasan kelebihan tanah pada perumahan.</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Kelebihan tanah dimaksud adalah jumlah yang dibayarkan konsumen kepada developer terhadap kelebihan tanah tersebut.</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -353,7 +359,8 @@
 
                   <RadioGroup v-model="formRating.ratings.fasilitas_umum" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Fasilitas Umum</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Fasilitas umum dimaksud adalah fasilitas yang disediakan untuk kepentingan umum.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Fasilitas umum dimaksud adalah bagaimana ketersediaan fasilitas umum pada perumahan.</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Fasilitas umum dimaksud adalah fasilitas yang disediakan untuk kepentingan umum.</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -372,7 +379,8 @@
 
                   <RadioGroup v-model="formRating.ratings.harga" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Harga</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Harga dimaksud adalah harga asli tanpa biaya pajak dan notaris.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Harga dimaksud adalah nominal harga rumah pada perumahan.</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Harga dimaksud adalah harga asli tanpa biaya pajak dan notaris.</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -391,7 +399,8 @@
 
                   <RadioGroup v-model="formRating.ratings.jaringan_listrik" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Jaringan Listrik</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Jaringan listrik dimaksud adalah tersedianya jaringan listrik dan seberapa sering listrik padam</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Jaringan listrik dimaksud adalah bagaimana ketersediaan jaringan listrik pada perumahan</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Jaringan listrik dimaksud adalah tersedianya jaringan listrik dan seberapa sering listrik padam</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -410,7 +419,8 @@
 
                   <RadioGroup v-model="formRating.ratings.keamanan" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Keamanan</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Keamanan dimaksud adalah seberapa sering terjadi kehilangan barang.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Keamanan dimaksud adalah tidak berada pada kawasan wilayah yang sepi penduduk dan dapat juga dengan menyediakan system one gate.</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Keamanan dimaksud adalah seberapa sering terjadi kehilangan barang.</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -429,7 +439,8 @@
 
                   <RadioGroup v-model="formRating.ratings.kenyamanan" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Kenyamanan</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Kenyamanan dimaksud adalah seberapa berisik, sejuk dan bersih keadaan lingkungan perumahan.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Kenyamanan dimaksud adalah lokasi yang bebas bising, lingkungan yang asri dan tetangga yang baik juga sangat mendukung.</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Kenyamanan dimaksud adalah seberapa berisik, sejuk dan bersih keadaan lingkungan perumahan.</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -448,7 +459,8 @@
 
                   <RadioGroup v-model="formRating.ratings.luas_tanah" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Luas Tanah</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Luas tanah dimaksud adalah seberapa sesuai luas tanah dengan harga yang diberikan.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Luas tanah dimaksud adalah kesesuaian budget harga tanah dengan penawaran pasar.</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Luas tanah dimaksud adalah seberapa sesuai luas tanah dengan harga yang diberikan.</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -467,7 +479,8 @@
 
                   <RadioGroup v-model="formRating.ratings.tipe_rumah" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Tipe Rumah</span>
-                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Tipe rumah dimaksud adalah seberapa sesuai tipe yang ada dengan harga yang berikan.</p>
+                    <p class="text-xs sm:text-sm leading-6 text-gray-500">Tipe rumah dimaksud adalah kesesuaian budget harga tipe rumah dengan penawaran pasar.</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Tipe rumah dimaksud adalah seberapa sesuai tipe yang ada dengan harga yang berikan.</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -487,6 +500,7 @@
                   <RadioGroup v-model="formRating.ratings.bukan_daerah_banjir" class="mt-2 border p-4 rounded-xl">
                     <span class="text-sm sm:text-base font-semibold leading-6 text-gray-900">Penilaian Bukan Daerah Banjir</span>
                     <p class="text-xs sm:text-sm leading-6 text-gray-500">Bukan daerah banjir dimaksud adalah seberapa sering perumahan tersebut terkena bencana banjir.</p>
+                    <!-- <p class="text-xs sm:text-sm leading-6 text-gray-500">Bukan daerah banjir dimaksud adalah seberapa sering perumahan tersebut terkena bencana banjir.</p> -->
                     <div class="flex space-x-2 mt-3">
                       <RadioGroupOption as="div" v-for="option in ratingConsts" :key="option.value" :value="option" v-slot="{ checked }">
                         <div :class="[
@@ -666,11 +680,11 @@ import {
   RadioGroupOption,
 } from "@headlessui/vue";
 
-import newCityMalangImg from "@/Assets/images/new-city-malang.jpg";
-import cityViewImg from "@/Assets/images/city-view.jpg";
-import deVillaImg from "@/Assets/images/de-villa.jpg";
-import tanjungBanjarArumIndahImg from "@/Assets/images/tanjung-banjar-arum-indah.jpg";
-import grandHillImg from "@/Assets/images/grand-hill.jpg";
+import newCityMalangImg from "@/Assets/images/new-city-1.jpg";
+import cityViewImg from "@/Assets/images/city-view-3.jpg";
+import deVillaImg from "@/Assets/images/de-villa-1.jpg";
+import tanjungBanjarArumIndahImg from "@/Assets/images/tanjung-banjar-arum-indah-1.jpg";
+import grandHillImg from "@/Assets/images/grand-hill-2.jpg";
 import { Inertia } from '@inertiajs/inertia';
 import { Link, usePage } from '@inertiajs/inertia-vue3';
 import Dropdown from '@/Components/Dropdown.vue';

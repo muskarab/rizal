@@ -42,7 +42,10 @@
           <p class="mt-2 block text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">Perumahan {{residence.residence_name}}</p>
         </h1>
         <p class="mt-8 text-xl leading-8 text-gray-500">{{residence.description}}</p>
-        <img class="mt-8 w-full rounded-lg" :src="residence.id == 1 ? newCityMalangImg : residence.id == 2 ? cityViewImg : residence.id == 3 ? deVillaImg : residence.id == 4 ? tanjungBanjarArumIndahImg : grandHillImg" alt />
+        <img class="mt-8 w-full rounded-lg" :src="residence.id == 1 ? newCity1Img : residence.id == 2 ? cityView1Img : residence.id == 3 ? deVilla1Img : residence.id == 4 ? tanjungBanjarArumIndah1Img : grandHill1Img" alt />
+        <img class="mt-8 w-full rounded-lg" :src="residence.id == 1 ? newCity2Img : residence.id == 2 ? cityView2Img : residence.id == 3 ? deVilla2Img : residence.id == 4 ? tanjungBanjarArumIndah2Img : grandHill2Img" alt />
+        <img class="mt-8 w-full rounded-lg" :src="residence.id == 1 ? newCity3Img : residence.id == 2 ? cityView3Img : residence.id == 3 ? deVilla3Img : residence.id == 4 ? tanjungBanjarArumIndah3Img : grandHill3Img" alt />
+        <img class="mt-8 w-full rounded-lg" :src="residence.id == 1 ? newCity4Img : residence.id == 2 ? cityView4Img : residence.id == 3 ? deVilla4Img : residence.id == 4 ? tanjungBanjarArumIndah4Img : grandHill4Img" alt />
       </div>
     </div>
   </div>
@@ -51,11 +54,30 @@
 <script>
 import { Link } from "@inertiajs/inertia-vue3";
 
-import newCityMalangImg from "@/Assets/images/new-city-malang.jpg";
-import cityViewImg from "@/Assets/images/city-view.jpg";
-import deVillaImg from "@/Assets/images/de-villa.jpg";
-import tanjungBanjarArumIndahImg from "@/Assets/images/tanjung-banjar-arum-indah.jpg";
-import grandHillImg from "@/Assets/images/grand-hill.jpg";
+import newCity1Img from "@/Assets/images/new-city-1.jpg";
+import newCity2Img from "@/Assets/images/new-city-2.jpg";
+import newCity3Img from "@/Assets/images/new-city-3.jpg";
+import newCity4Img from "@/Assets/images/new-city-4.jpg";
+
+import cityView1Img from "@/Assets/images/city-view-1.jpg";
+import cityView2Img from "@/Assets/images/city-view-2.jpg";
+import cityView3Img from "@/Assets/images/city-view-3.jpg";
+import cityView4Img from "@/Assets/images/city-view-4.jpg";
+
+import deVilla1Img from "@/Assets/images/de-villa-1.jpg";
+import deVilla2Img from "@/Assets/images/de-villa-2.jpg";
+import deVilla3Img from "@/Assets/images/de-villa-3.jpg";
+import deVilla4Img from "@/Assets/images/de-villa.jpg";
+
+import tanjungBanjarArumIndah1Img from "@/Assets/images/tanjung-banjar-arum-indah-1.jpg";
+import tanjungBanjarArumIndah2Img from "@/Assets/images/tanjung-banjar-arum-indah-2.jpg";
+import tanjungBanjarArumIndah3Img from "@/Assets/images/tanjung-banjar-arum-indah-3.jpg";
+import tanjungBanjarArumIndah4Img from "@/Assets/images/tanjung-banjar-arum-indah-4.jpg";
+
+import grandHill1Img from "@/Assets/images/grand-hill-1.jpg";
+import grandHill2Img from "@/Assets/images/grand-hill-2.jpg";
+import grandHill3Img from "@/Assets/images/grand-hill-3.jpg";
+import grandHill4Img from "@/Assets/images/grand-hill.jpg";
 
 export default {
   components: {
@@ -69,11 +91,30 @@ export default {
   },
   setup() {
     return {
-      newCityMalangImg,
-      cityViewImg,
-      deVillaImg,
-      tanjungBanjarArumIndahImg,
-      grandHillImg,
+      newCity1Img,
+      newCity2Img,
+      newCity3Img,
+      newCity4Img,
+
+      cityView1Img,
+      cityView2Img,
+      cityView3Img,
+      cityView4Img,
+
+      deVilla1Img,
+      deVilla2Img,
+      deVilla3Img,
+      deVilla4Img,
+
+      tanjungBanjarArumIndah1Img,
+      tanjungBanjarArumIndah2Img,
+      tanjungBanjarArumIndah3Img,
+      tanjungBanjarArumIndah4Img,
+
+      grandHill1Img,
+      grandHill2Img,
+      grandHill3Img,
+      grandHill4Img,
     };
   },
 };
